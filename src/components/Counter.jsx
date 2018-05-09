@@ -6,7 +6,7 @@ export default class Counter extends Component {
         super(props);
         this.state = {
             currentCountId: 0,
-            list: [
+            items: [
                 { id: 0, isCurrent: false },
                 { id: 1, isCurrent: false },
                 { id: 2, isCurrent: false },
@@ -17,7 +17,7 @@ export default class Counter extends Component {
     countStart() {
         this.setState({
             currentCountId: this.state.currentCountId + 1,
-            list: this.state.list.map((element, array) => {
+            items: this.state.items.map((element, array) => {
                 if (this.state.currentCountId === array) {
                     element.isCurrent = true;
                 } else {
@@ -37,9 +37,6 @@ export default class Counter extends Component {
             }
         }, 1000);
     }
-    componentDidUpdate() {
-        
-    }
     componentWillMount() {
         this.countStart()
     }
@@ -47,12 +44,13 @@ export default class Counter extends Component {
         clearTimeout(this.count);
     }
     render() {
+        // TODO:itemsのリファクタ
         return (
             <ul>
-                <CounterCell isCurrent={this.state.list[0].isCurrent} key={this.state.list[0].id} />
-                <CounterCell isCurrent={this.state.list[1].isCurrent} key={this.state.list[1].id} />
-                <CounterCell isCurrent={this.state.list[2].isCurrent} key={this.state.list[2].id} />
-                <CounterCell isCurrent={this.state.list[3].isCurrent} key={this.state.list[3].id} />
+                <CounterCell isCurrent={this.state.items[0].isCurrent} key={this.state.items[0].id} />
+                <CounterCell isCurrent={this.state.items[1].isCurrent} key={this.state.items[1].id} />
+                <CounterCell isCurrent={this.state.items[2].isCurrent} key={this.state.items[2].id} />
+                <CounterCell isCurrent={this.state.items[3].isCurrent} key={this.state.items[3].id} />
             </ul>
         )
     }
