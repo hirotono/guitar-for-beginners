@@ -71,17 +71,17 @@
 
 .p-text-a {
     background: url("./img/img_text_a.png");
-    background-size: 144px 76px;
+    background-size: 144px 151px;
     width: 144px;
-    height: 76px;
+    height: 151px;
     @extend %img-rep;
 }
 
 .p-text-b {
     background: url("./img/img_text_b.png");
-    background-size: 125px 76px;
+    background-size: 125px 151px;
     width: 125px;
-    height: 76px;
+    height: 151px;
     @extend %img-rep;
 }
 
@@ -95,49 +95,49 @@
 
 .p-text-d {
     background: url("./img/img_text_d.png");
-    background-size: 128px 76px;
+    background-size: 128px 151px;
     width: 128px;
-    height: 76px;
+    height: 151px;
     @extend %img-rep;
 }
 
 .p-text-e {
-    backgrouned: url("./img/img_text_e.png");
-    background-size: 230px 303px;
-    width: 230px;
-    height: 303px;
+    background: url("./img/img_text_e.png");
+    background-size: 115px 151px;
+    width: 115px;
+    height: 151px;
     @extend %img-rep;
 }
 
 .p-text-f {
     background: url("./img/img_text_f.png");
-    background-size: 216px 76px;
-    width: 216px;
-    height: 76px;
+    background-size: 108px 151px;
+    width: 108px;
+    height: 151px;
     @extend %img-rep;
 }
 
 .p-text-g {
     background: url("./img/img_text_g.png");
-    background-size: 282px 319px;
-    width: 282px;
-    height: 319px;
+    background-size: 141px 159px;
+    width: 141px;
+    height: 159px;
     @extend %img-rep;
 }
 
 .p-text-flat {
     background: url("./img/img_text_flat.png");
-    background-size: 63px 152px;
-    width: 63px;
-    height: 152px;
+    background-size: 31px 86px;
+    width: 31px;
+    height: 86px;
     @extend %img-rep;
 }
 
 .p-text-sharp {
     background: url("./img/img_text_sharp.png");
-    background-size: 97px 143px;
-    width: 97px;
-    height: 143px;
+    background-size: 48px 71px;
+    width: 48px;
+    height: 71px;
     @extend %img-rep;
 }
 
