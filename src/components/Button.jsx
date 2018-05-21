@@ -4,13 +4,14 @@ export default class Button extends Component {
     play() {
         this.props.updateState({
             play: true,
-            count: true
+            preCount: true
         })
     }
     stop() {
         this.props.updateState({
             play: false,
-            count: false
+            preCount: false,
+            playingCount: false,
         })
     }
     render() {

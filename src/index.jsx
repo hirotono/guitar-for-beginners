@@ -13,8 +13,11 @@ class LayoutComponent extends Component {
         const type6 = 'p-text-6';
         this.state = {
             play: false,
-            count: false,
-            stringType: type6
+            preCount: false,
+            playingCount: false,
+            stringType: type6,
+            stringTypeNum: 11,
+            speed: 1000,
         }
         this.updateState = this.updateState.bind(this)
     }
@@ -25,13 +28,13 @@ class LayoutComponent extends Component {
         return(
             <div>
                 {(() => {
-                    if(this.state.count) {
-                        return <Counter playState={this.state.play} updateState={ this.updateState } />
+                    if(this.state.preCount) {
+                        return <Counter speed={this.state.speed} playState={this.state.play} updateState={ this.updateState } />
                     } else {
                         return null
                     }
                 })()}
-                <Display playState={this.state.play} stringType={this.state.stringType} />
+                <Display speed={this.state.speed} playState={this.state.play} preCountState={this.state.preCount} playingCountState={this.state.playingCount} stringType={this.state.stringType} stringTypeNum={this.state.stringTypeNum} />
                 <Button updateState={ this.updateState } playState={this.state.play} { ...btnProps } />
             </div>
         )

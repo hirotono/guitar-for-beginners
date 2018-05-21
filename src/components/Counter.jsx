@@ -5,7 +5,7 @@ export default class Counter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentCountId: 0,
+            currentPreCountNum: 0,
             items: [
                 { id: 0, isCurrent: false },
                 { id: 1, isCurrent: false },
@@ -14,11 +14,11 @@ export default class Counter extends Component {
             ]
         }
     }
-    countStart() {
+    preCountStart() {
         this.setState({
-            currentCountId: this.state.currentCountId + 1,
+            currentPreCountNum: this.state.currentPreCountNum + 1,
             items: this.state.items.map((element, array) => {
-                if (this.state.currentCountId === array) {
+                if (this.state.currentPreCountNum === array) {
                     element.isCurrent = true;
                 } else {
                     element.isCurrent = false;
@@ -26,22 +26,23 @@ export default class Counter extends Component {
                 return element;
             })
         })
-        this.count = setTimeout(() => {
-            if (this.state.currentCountId === 4) {
+        this.preCount = setTimeout(() => {
+            if (this.state.currentPreCountNum === 4) {
                 clearTimeout();
                 this.props.updateState({
-                    count: false
+                    preCount: false,
+                    playingCount: true
                 })
             } else {
-                this.countStart()
+                this.preCountStart();
             }
-        }, 1000);
+        }, this.props.speed);
     }
     componentWillMount() {
-        this.countStart()
+        this.preCountStart()
     }
     componentWillUnmount() {
-        clearTimeout(this.count);
+        clearTimeout(this.preCount);
     }
     render() {
         // TODO:itemsのリファクタ
