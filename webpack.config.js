@@ -1,7 +1,7 @@
 const MODE = 'development';
 const enabledSourceMap = (MODE === 'development');
 
-var SpritesmithPlugin = require('webpack-spritesmith');
+const SpritesmithPlugin = require('webpack-spritesmith');
 
 module.exports = {
     mode: 'development',//ソースマップ有効 production指定で圧縮
@@ -25,8 +25,17 @@ module.exports = {
                         options: {
                             url: false,
                             sourceMap: enabledSourceMap,//ソースマップ有効
-                            importLoaders: 2
+                            importLoaders: 3
                         },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: enabledSourceMap,
+                            plugins: [
+                                require('autoprefixer')({ grid: true })
+                            ]
+                        }
                     },
                     {
                         loader: 'sass-loader',
