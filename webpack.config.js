@@ -56,5 +56,20 @@ module.exports = {
                 exclude: /node_modules/,
             }
         ]
-    }
+    },
+    plugins: [
+        new SpritesmithPlugin({
+            src: {
+                cwd: './sprite/',
+                glob: '*.png'
+            },
+            target: {
+                image: './dist/img/sprite.png',
+                css: './src/_sprite.scss'
+            },
+            apiOptions: {
+                cssImageRef: "./img/sprite.png"
+            },
+        })
+    ]
 }
