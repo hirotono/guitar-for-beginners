@@ -1,0 +1,122 @@
+@import "sprite";
+
+%img-rep {
+    text-indent: 120%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.p-text-1 {
+    @include sprite($img-text-1);
+    @extend %img-rep;
+}
+
+.p-text-2 {
+    @include sprite($img-text-2);
+    @extend %img-rep;
+}
+
+.p-text-3 {
+    @include sprite($img-text-3);
+    @extend %img-rep;
+}
+
+.p-text-4 {
+    @include sprite($img-text-4);
+    @extend %img-rep;
+}
+
+.p-text-5 {
+    @include sprite($img-text-5);
+    @extend %img-rep;
+}
+
+.p-text-6 {
+    @include sprite($img-text-6);
+    @extend %img-rep;
+}
+
+.p-text-7 {
+    @include sprite($img-text-7);
+    @extend %img-rep;
+}
+
+.p-text-a {
+    @include sprite($img-text-a);
+    @extend %img-rep;
+}
+
+.p-text-b {
+    @include sprite($img-text-b);
+    @extend %img-rep;
+}
+
+.p-text-c {
+    @include sprite($img-text-c);
+    @extend %img-rep;
+}
+
+.p-text-d {
+    @include sprite($img-text-d);
+    @extend %img-rep;
+}
+
+.p-text-e {
+    @include sprite($img-text-e);
+    @extend %img-rep;
+}
+
+.p-text-f {
+    @include sprite($img-text-f);
+    @extend %img-rep;
+}
+
+.p-text-g {
+    @include sprite($img-text-g);
+    @extend %img-rep;
+}
+
+.p-text-flat {
+    @include sprite($img-text-flat);
+    @extend %img-rep;
+}
+
+.p-text-sharp {
+    @include sprite($img-text-sharp);
+    @extend %img-rep;
+}
+
+.p-text-string {
+    @include sprite($img-text-string);
+    @extend %img-rep;
+}
+
+.p-icon-count-on {
+    @include sprite($icon-count-on);
+    @extend %img-rep;
+}
+
+.p-icon-count-off {
+    @include sprite($icon-count-off);
+    @extend %img-rep;
+}
+
+.p-btn-play {
+    @include sprite($btn-play);
+    cursor: pointer;
+    @extend %img-rep;
+}
+
+.p-btn-stop {
+    @include sprite($btn-stop);
+    cursor: pointer;
+    @extend %img-rep;
+}
+
+.notes-display {
+
+}
+
+.string-view {
+    display: flex;
+}

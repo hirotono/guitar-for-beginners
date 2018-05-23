@@ -8,7 +8,7 @@ module.exports = {
     entry: './src/index.jsx',
     output: {
         path: `${__dirname}/dist`,
-        filename: 'main.js'
+        filename: 'application.js'
     },
     devServer: {
         contentBase: 'dist',
