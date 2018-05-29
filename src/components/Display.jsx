@@ -9,12 +9,12 @@ export default class Display extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentNotes: {
-                notes: undefined,
+            currentNote: {
+                note: undefined,
                 keySignature: null
             },
-            nextNotes: {
-                notes: undefined,
+            nextNote: {
+                note: undefined,
                 keySignature: null
             },
             currentPlayingCountNum: 1
@@ -23,16 +23,17 @@ export default class Display extends Component {
     stateInit() {
         console.log('stateInit')
         this.setState({
-            currentNotes: {
-                notes: undefined,
+            currentNote: {
+                note: undefined,
                 keySignature: null
             },
-            nextNotes: {
-                notes: undefined,
+            nextNote: {
+                note: undefined,
                 keySignature: null
             },
             currentPlayingCountNum: 1
-        })
+        });
+        this.beforeNote = void 0;
     }
     playingCountStart() {
         console.log(this.state.currentPlayingCountNum);
@@ -46,80 +47,91 @@ export default class Display extends Component {
                     currentPlayingCountNum: 1
                 })
                 this.setCurrentNotes();
-            } else if (this.state.currentPlayingCountNum === (this.props.stringTypeNum - 4)) {
-                this.setNextNotes(this.randomNotes())
+            } else if (this.state.currentPlayingCountNum === (this.props.stringTypeNum - 4)) {//TODO: preCountをpropsで渡す
+                this.setNextNotes(this.createRandomNotes())
             }
         }, this.props.speed);
     }
-    randomNotes() {
-        // TODO: 同じnotesが続いたら振り直し
-        const notesArray = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
-        const randomNotesIndex = this.random(notesArray.length);
+    createRandomNotes() {
+        let notesArray = ['c', 'd', 'e', 'f', 'g', 'a', 'b'];
         let keySignatureArray = ['sharp', 'flat', null];
 
-        if (-1 < [0, 3].indexOf(randomNotesIndex)) {
+        if (this.beforeNote) {
+            notesArray = notesArray.filter(note => note !== this.beforeNote)
+        }
+
+        const noteIndex = this.random(notesArray.length);
+        const latestNote = notesArray[noteIndex];
+
+        if (-1 < ['c', 'f'].indexOf(latestNote)) {
             keySignatureArray = ['sharp', null];
-        } else if (-1 < [2, 6].indexOf(randomNotesIndex)) {
+        } else if (-1 < ['e', 'b'].indexOf(latestNote)) {
             keySignatureArray = ['flat', null];
         }
-        const randomKeySignatureIndex = this.random(keySignatureArray.length)
+        const keySignatureIndex = this.random(keySignatureArray.length)
 
+        this.beforeNote = latestNote;
         return {
-            notes: notesArray[randomNotesIndex],
-            keySignature: keySignatureArray[randomKeySignatureIndex]
+            note: latestNote,
+            keySignature: keySignatureArray[keySignatureIndex]
         }
     }
     setNextNotes(data) {
         this.setState({
-            nextNotes: data
+            nextNote: data
         })
     }
     setCurrentNotes() {
         this.setState({
-            currentNotes: this.state.nextNotes
+            currentNote: this.state.nextNote
         })
     }
     random(num) {
         return Math.floor(Math.random() * num);
     }
     componentWillReceiveProps(nextProps) {
-        // 再生されたらランダムで取得したnotesをsetnextNoteにset
-        if (nextProps.playState) {
-            this.setNextNotes(this.randomNotes());
+        // 再生されたらランダムで取得したnoteをsetnextNoteにset
+        if (nextProps.preCountState) {
+            this.setNextNotes(this.createRandomNotes());
         } else {
             // 停止時初期化
             // TODO: clearTimeoutの条件用意
             clearTimeout(this.playingCount);
             this.stateInit();
         }
-
-        // preCount終了後、currentNotesをsetしてカウントスタート
+        // preCount終了後、currentNoteをsetしてカウントスタート
         if (nextProps.playingCountState) {
             this.setCurrentNotes();
             this.playingCountStart();
         }
     }
     render() {
-        const stringCell = this.props.playState ? <StringCell stringClassName={ this.props.stringType } /> : null;
+        const stringCell = this.props.playState ? <StringCell stringClassName={`p-text-${ this.props.stringName }`} /> : null;
+        console.log('this.state.nextNote, this.state.currentNote', this.state.nextNote, this.state.currentNote)
         return (
             <div>
-                {(() => {
-                    console.log('this.props.preCountState || this.props.playingCountState', this.props.preCountState, this.props.playingCountState)
-                    if (this.props.preCountState || this.props.playingCountState) {
-                        return <NotesCell notesClassName={this.state.nextNotes.notes} keySignatureClassName={this.state.nextNotes.keySignature} key="1" />
-                    }
+                <div className="string-view">
+                    {stringCell}
+                    <div className="p-text-string"></div>
+                </div>
+                <div className="note-view">
+                    {(() => {
+                        // TODO:マジックナンバーを定数に
+                        if (this.props.preCountState || this.state.currentPlayingCountNum > 6) {
+                            return <NotesCell noteClassName={this.state.nextNote.note} keySignatureClassName={this.state.nextNote.keySignature} />
+                        } else {
+                            return null
+                        }
 
-                })()}
-                {(() => {
-
-                    if (this.props.playState) {
-                        return <NotesCell notesClassName={this.state.currentNotes.notes} keySignatureClassName={this.state.currentNotes.keySignature} key="2" />
-                    }
-                })()}
-                {/* <NotesCell notesClassName={this.state.nextNotes.notes} keySignatureClassName={this.state.nextNotes.keySignature} />
-                <NotesCell notesClassName={this.state.currentNotes.notes} keySignatureClassName={this.state.currentNotes.keySignature} /> */}
-                { stringCell }
-                <div className="p-text-string"></div>
+                    })()}
+                    {(() => {
+                        if (this.props.playingCountState) {
+                            return <NotesCell noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
+                        } else {
+                            return null
+                        }
+                    })()}
+                </div>
             </div>
         )
     }

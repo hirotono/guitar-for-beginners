@@ -18,7 +18,7 @@ export default class Button extends Component {
         const btnTextClass  = this.props.playState ? this.props.buttonTextStop : this.props.buttonTextPlay ;
         const playStateText = this.props.playState ? '再生中' : '停止中';
         return (
-            <div className= { btnTextClass } onClick = { () => {
+            <div className={ `${btnTextClass} btn-view` } onClick = { () => {
                 if (this.props.playState) {
                     this.stop()
                 } else {

@@ -47,7 +47,7 @@ export default class Counter extends Component {
     render() {
         // TODO:itemsのリファクタ
         return (
-            <ul>
+            <ul className="counter-view">
                 <CounterCell isCurrent={this.state.items[0].isCurrent} key={this.state.items[0].id} />
                 <CounterCell isCurrent={this.state.items[1].isCurrent} key={this.state.items[1].id} />
                 <CounterCell isCurrent={this.state.items[2].isCurrent} key={this.state.items[2].id} />
