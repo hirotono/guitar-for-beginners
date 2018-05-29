@@ -1,3 +1,5 @@
+@import url("../node_modules/sanitize.css/sanitize.css");
+@import "default";
 @import "sprite";
 
 %img-rep {
@@ -113,10 +115,90 @@
     @extend %img-rep;
 }
 
-.notes-display {
-
+.layout-view {
+    padding: 0 30px;
+    width: 750px;
+    height: 730px;
+    position: absolute;
+    top: 245px;
 }
 
 .string-view {
+    width: 215px;
+    height: 144px;
+    position: relative;
     display: flex;
+    .p-text-string {
+        position: absolute;
+        bottom: -9px;
+        right: 0;
+    }
+}
+
+.counter-view {
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+}
+
+.note-view {
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-view {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: -33px;
+}
+
+.note-cell {
+    position: relative;
+    .p-text-flat {
+        position: absolute;
+        &.is-layout-c,
+        &.is-layout-e,
+        &.is-layout-b {
+            right: -73px;
+        }
+        &.is-layout-d {
+            right: -58px;
+        }
+        &.is-layout-f {
+            right: -80px;
+        }
+        &.is-layout-g {
+            right: -60px;
+        }
+        &.is-layout-a {
+            right: 0;
+        }
+        top: -115px;
+    }
+    .p-text-sharp {
+        position: absolute;
+
+        &.is-layout-b,
+        &.is-layout-c {
+            right: -85px;
+        }
+        &.is-layout-c {
+            right: -76px;
+        }
+        &.is-layout-e {
+            right: -108px;
+        }
+        &.is-layout-f {
+            right: -116px;
+        }
+        &.is-layout-g {
+            right: -80px;
+        }
+        &.is-layout-a {
+            right: -30px;
+        }
+        top: -105px;
+    }
 }
