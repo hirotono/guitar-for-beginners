@@ -30,7 +30,7 @@ class LayoutComponent extends Component {
         return(
             <div>
                 <div className="layout-view">
-                    <Display className="notes-display" speed={this.state.speed} playState={this.state.play} preCountState={this.state.preCount} playingCountState={this.state.playingCount} stringName={this.state.stringName} stringTypeNum={this.state.stringTypeArray.length * 2} />
+                    <Display className="notes-display" speed={this.state.speed} playState={this.state.play} preCountState={this.state.preCount} playingCountState={this.state.playingCount} stringName={this.state.stringName} stringTypeArray={this.state.stringTypeArray} />
                     {(() => {
                         if (this.state.preCount) {
                             return <Counter speed={this.state.speed} playState={this.state.play} updateState={this.updateState} />

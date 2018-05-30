@@ -17,11 +17,14 @@ export default class Display extends Component {
                 note: undefined,
                 keySignature: null
             },
-            currentPlayingCountNum: 1
+            currentPlayingCountNum: 1,
+            stringName: this.props.stringName
         }
+        const stringTypeReverseArray = this.props.stringTypeArray.concat().reverse();
+        this.stringTypeArray = this.props.stringTypeArray.concat(stringTypeReverseArray);
     }
     stateInit() {
-        console.log('stateInit')
+        console.log('stateInit!!')
         this.setState({
             currentNote: {
                 note: undefined,
@@ -31,25 +34,29 @@ export default class Display extends Component {
                 note: undefined,
                 keySignature: null
             },
-            currentPlayingCountNum: 1
+            currentPlayingCountNum: 1,
+            stringName: this.props.stringName
         });
         this.beforeNote = void 0;
     }
     playingCountStart() {
-        console.log(this.state.currentPlayingCountNum);
+        if (this.state.currentPlayingCountNum === (this.props.stringTypeArray.length * 2) + 1) {
+            this.setState({
+                currentPlayingCountNum: 1
+            })
+            this.setCurrentNotes();
+        } else if (this.state.currentPlayingCountNum === ((this.props.stringTypeArray.length * 2) - 4)) {//TODO: preCountをpropsで渡す
+            this.setNextNotes(this.createRandomNotes())
+        }
+
         this.setState({
-            currentPlayingCountNum: this.state.currentPlayingCountNum + 1,
+            stringName: this.stringTypeArray[this.state.currentPlayingCountNum - 1],
         })
-        this.playingCount = setTimeout(() => {
+        this.timerId = setTimeout(() => {
+            this.setState({
+                currentPlayingCountNum: this.state.currentPlayingCountNum + 1,
+            })
             this.playingCountStart()
-            if (this.state.currentPlayingCountNum === this.props.stringTypeNum) {
-                this.setState({
-                    currentPlayingCountNum: 1
-                })
-                this.setCurrentNotes();
-            } else if (this.state.currentPlayingCountNum === (this.props.stringTypeNum - 4)) {//TODO: preCountをpropsで渡す
-                this.setNextNotes(this.createRandomNotes())
-            }
         }, this.props.speed);
     }
     createRandomNotes() {
@@ -93,31 +100,28 @@ export default class Display extends Component {
         // 再生されたらランダムで取得したnoteをsetnextNoteにset
         if (nextProps.preCountState) {
             this.setNextNotes(this.createRandomNotes());
+        } else if (nextProps.playingCountState) {
+            // preCount終了後、currentNoteをsetしてカウントスタート
+            this.setCurrentNotes();
+            this.playingCountStart();
         } else {
             // 停止時初期化
             // TODO: clearTimeoutの条件用意
-            clearTimeout(this.playingCount);
+            clearTimeout(this.timerId);
             this.stateInit();
-        }
-        // preCount終了後、currentNoteをsetしてカウントスタート
-        if (nextProps.playingCountState) {
-            this.setCurrentNotes();
-            this.playingCountStart();
         }
     }
     render() {
-        const stringCell = this.props.playState ? <StringCell stringClassName={`p-text-${ this.props.stringName }`} /> : null;
-        console.log('this.state.nextNote, this.state.currentNote', this.state.nextNote, this.state.currentNote)
         return (
             <div>
                 <div className="string-view">
-                    {stringCell}
+                    <StringCell stringClassName={`p-text-${this.state.stringName}`} />
                     <div className="p-text-string"></div>
                 </div>
                 <div className="note-view">
                     {(() => {
                         // TODO:マジックナンバーを定数に
-                        if (this.props.preCountState || this.state.currentPlayingCountNum > 6) {
+                        if (this.props.preCountState || this.state.currentPlayingCountNum > 8) {
                             return <NotesCell noteClassName={this.state.nextNote.note} keySignatureClassName={this.state.nextNote.keySignature} />
                         } else {
                             return null
