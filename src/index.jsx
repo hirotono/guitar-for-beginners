@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 
-import './application.scss';
+import './scss/application.scss';
 
 import Button from './components/Button.jsx';
 import Display from './components/Display.jsx';
