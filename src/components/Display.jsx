@@ -8,6 +8,10 @@ import NotesCell from './NotesCell.jsx';
 export default class Display extends Component {
     constructor(props) {
         super(props);
+
+        const stringTypeReverseArray = this.props.stringTypeArray.concat().reverse();
+
+        this.stringTypeArray = this.props.stringTypeArray.concat(stringTypeReverseArray);
         this.state = {
             currentNote: {
                 note: undefined,
@@ -20,8 +24,6 @@ export default class Display extends Component {
             currentPlayingCountNum: 1,
             stringName: this.props.stringName
         }
-        const stringTypeReverseArray = this.props.stringTypeArray.concat().reverse();
-        this.stringTypeArray = this.props.stringTypeArray.concat(stringTypeReverseArray);
     }
     stateInit() {
         console.log('stateInit!!')
@@ -121,8 +123,10 @@ export default class Display extends Component {
                 <div className="note-view">
                     {(() => {
                         // TODO:マジックナンバーを定数に
-                        if (this.props.preCountState || this.state.currentPlayingCountNum > 8) {
-                            return <NotesCell noteClassName={this.state.nextNote.note} keySignatureClassName={this.state.nextNote.keySignature} />
+                        const canDisplayNextNote = this.stringTypeArray.length - 4;
+
+                        if (this.props.preCountState || this.state.currentPlayingCountNum > canDisplayNextNote) {
+                            return <NotesCell modClassName="is-next-note" noteClassName={this.state.nextNote.note} keySignatureClassName={this.state.nextNote.keySignature} />
                         } else {
                             return null
                         }
@@ -130,7 +134,7 @@ export default class Display extends Component {
                     })()}
                     {(() => {
                         if (this.props.playingCountState) {
-                            return <NotesCell noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
+                            return <NotesCell modClassName={null} noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
                         } else {
                             return null
                         }

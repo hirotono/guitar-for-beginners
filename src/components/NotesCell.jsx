@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 export default class NotesCell extends Component {
     render() {
         return(
-            <div className="note-cell">
+            <div className={`note-cell ${this.props.modClassName}`}>
                 <div className={`p-text-${this.props.noteClassName}`}></div>
                 {(() => {
                     if (this.props.keySignatureClassName) {

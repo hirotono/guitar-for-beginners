@@ -3,15 +3,15 @@ import React, { Component } from 'react';
 export default class Button extends Component {
     play() {
         this.props.updateState({
-            play: true,
-            preCount: true
+            isPlay: true,
+            isPreCount: true
         })
     }
     stop() {
         this.props.updateState({
-            play: false,
-            preCount: false,
-            playingCount: false,
+            isPlay: false,
+            isPreCount: false,
+            isPlayingCount: false,
         })
     }
     render() {

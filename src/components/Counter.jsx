@@ -22,8 +22,8 @@ export default class Counter extends Component {
             if (this.state.currentPreCountNum === 4) {
                 clearTimeout();
                 this.props.updateState({
-                    preCount: false,
-                    playingCount: true
+                    isPreCount: false,
+                    isPlayingCount: true
                 })
             } else {
                 this.preCountStart();

@@ -12,12 +12,13 @@ class LayoutComponent extends Component {
         super(props)
         const stringType6Array = ['6', '5', '4', '3', '2', '1'];
         const stringType7Array = ['7', '6', '5', '4', '3', '2', '1'];
+        const stringTypeArray = stringType6Array;
         this.state = {
-            play: false,
-            preCount: false,
-            playingCount: false,
-            stringName: '6',// TODO: updateStateしていく
-            stringTypeArray: stringType6Array,
+            isPlay: false,
+            isPreCount: false,
+            isPlayingCount: false,
+            stringName: stringTypeArray.length,
+            stringTypeArray: stringTypeArray,
             stringTypeNum: this.state,
             speed: 1000,
         }
@@ -30,16 +31,16 @@ class LayoutComponent extends Component {
         return(
             <div>
                 <div className="layout-view">
-                    <Display className="notes-display" speed={this.state.speed} playState={this.state.play} preCountState={this.state.preCount} playingCountState={this.state.playingCount} stringName={this.state.stringName} stringTypeArray={this.state.stringTypeArray} />
+                    <Display className="notes-display" speed={this.state.speed} playState={this.state.isPlay} preCountState={this.state.isPreCount} playingCountState={this.state.isPlayingCount} stringName={this.state.stringName} stringTypeArray={this.state.stringTypeArray} />
                     {(() => {
-                        if (this.state.preCount) {
-                            return <Counter speed={this.state.speed} playState={this.state.play} updateState={this.updateState} />
+                        if (this.state.isPreCount) {
+                            return <Counter speed={this.state.speed} playState={this.state.isPlay} updateState={this.updateState} />
                         } else {
                             return null
                         }
                     })()}
                 </div>
-                <Button updateState={this.updateState} playState={this.state.play} {...btnProps} />
+                <Button updateState={this.updateState} playState={this.state.isPlay} {...btnProps} />
             </div>
         )
     }
