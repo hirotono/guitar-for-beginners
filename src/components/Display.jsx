@@ -133,8 +133,9 @@ export default class Display extends Component {
 
                     })()}
                     {(() => {
+
                         if (this.props.playingCountState) {
-                            return <NotesCell modClassName={null} noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
+                            return <NotesCell modClassName='' noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
                         } else {
                             return null
                         }
