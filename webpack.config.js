@@ -74,7 +74,7 @@ module.exports = {
             },
             target: {
                 image: './dist/img/sprite.png',
-                css: './src/_sprite.scss'
+                css: './src/scss/_sprite.scss'
             },
             apiOptions: {
                 cssImageRef: "./img/sprite.png"
