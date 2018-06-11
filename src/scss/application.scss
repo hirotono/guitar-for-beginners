@@ -154,56 +154,56 @@
     margin-left: -33px;
 }
 
-.note-cell {
-    position: relative;
-    &.is-next-note {
-        margin-right: 20px;
-        transform: scale(0.5);
-        transform-origin: bottom;
-    }
-    .p-text-flat {
-        position: absolute;
-        &.is-layout-c,
-        &.is-layout-e,
-        &.is-layout-b {
-            right: -73px;
-        }
-        &.is-layout-d {
-            right: -58px;
-        }
-        &.is-layout-f {
-            right: -80px;
-        }
-        &.is-layout-g {
-            right: -60px;
-        }
-        &.is-layout-a {
-            right: 0;
-        }
-        top: -115px;
-    }
-    .p-text-sharp {
-        position: absolute;
+// .note-cell {
+//     position: relative;
+//     &.is-next-note {
+//         margin-right: 20px;
+//         transform: scale(0.5);
+//         transform-origin: bottom;
+//     }
+//     .p-text-flat {
+//         position: absolute;
+//         &.is-layout-c,
+//         &.is-layout-e,
+//         &.is-layout-b {
+//             right: -73px;
+//         }
+//         &.is-layout-d {
+//             right: -58px;
+//         }
+//         &.is-layout-f {
+//             right: -80px;
+//         }
+//         &.is-layout-g {
+//             right: -60px;
+//         }
+//         &.is-layout-a {
+//             right: 0;
+//         }
+//         top: -115px;
+//     }
+//     .p-text-sharp {
+//         position: absolute;
 
-        &.is-layout-b,
-        &.is-layout-c {
-            right: -85px;
-        }
-        &.is-layout-d {
-            right: -76px;
-        }
-        &.is-layout-e {
-            right: -108px;
-        }
-        &.is-layout-f {
-            right: -116px;
-        }
-        &.is-layout-g {
-            right: -80px;
-        }
-        &.is-layout-a {
-            right: -30px;
-        }
-        top: -105px;
-    }
-}
+//         &.is-layout-b,
+//         &.is-layout-c {
+//             right: -85px;
+//         }
+//         &.is-layout-d {
+//             right: -76px;
+//         }
+//         &.is-layout-e {
+//             right: -108px;
+//         }
+//         &.is-layout-f {
+//             right: -116px;
+//         }
+//         &.is-layout-g {
+//             right: -80px;
+//         }
+//         &.is-layout-a {
+//             right: -30px;
+//         }
+//         top: -105px;
+//     }
+// }

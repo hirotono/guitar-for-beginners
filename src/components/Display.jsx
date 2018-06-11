@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import StringCell from './StringCell.jsx';
-import NotesCell from './NotesCell.jsx';
+import NoteCell from './NoteCell.jsx';
 
 // TODO: state管理リファクタ
 // TODO: 速度パターンを3種類程つくって値を共通管理
@@ -126,7 +126,7 @@ export default class Display extends Component {
                         const canDisplayNextNote = this.stringTypeArray.length - 4;
 
                         if (this.props.preCountState || this.state.currentPlayingCountNum > canDisplayNextNote) {
-                            return <NotesCell modClassName="is-next-note" noteClassName={this.state.nextNote.note} keySignatureClassName={this.state.nextNote.keySignature} />
+                            return <NoteCell speed={this.props.speed} modClassName="is-next-note" noteClassName={this.state.nextNote.note} keySignatureClassName={this.state.nextNote.keySignature} />
                         } else {
                             return null
                         }
@@ -135,7 +135,7 @@ export default class Display extends Component {
                     {(() => {
 
                         if (this.props.playingCountState) {
-                            return <NotesCell modClassName='' noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
+                            return <NoteCell speed={this.props.speed} modClassName='' noteClassName={this.state.currentNote.note} keySignatureClassName={this.state.currentNote.keySignature} />
                         } else {
                             return null
                         }
