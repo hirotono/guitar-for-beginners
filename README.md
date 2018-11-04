@@ -33,3 +33,8 @@
 
 ### 機能拡張
 * コードバッキング
+
+
+randomNotes
+preCountスタート時
+playCountスタート時

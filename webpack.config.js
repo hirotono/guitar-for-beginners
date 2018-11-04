@@ -25,7 +25,7 @@ module.exports = {
                         options: {
                             url: false,
                             sourceMap: enabledSourceMap,//ソースマップ有効
-                            importLoaders: 3
+                            importLoaders: 2
                         },
                     },
                     {
